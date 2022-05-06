@@ -1,6 +1,8 @@
+import datetime
+import sys
 import os
 import random
-
+from rdp import rdp
 import numpy as np
 import pandas as pd
 import traj_dist.distance as tdist
@@ -8,14 +10,17 @@ from sklearn.neighbors import KNeighborsClassifier
 
 train_size, val_size, test_size = 600, 200, 200
 
+lon_adjust_factor_ship = 1 / np.cos(30.526296012793487)
 
-def load_data(directory, size, sample_rate=1000):
+
+def load_data(directory, size, sample_rate=1000, lon_adjust_factor=1.0):
     indices = random.sample(range(1, 18329 + 1), size)
     Xs, ys = [], []
     for i in indices:
         data = pd.read_csv(os.path.join(directory, str(i) + '.csv').replace('\\', '/'))
         lat = np.array(data.iloc[:, 1])[::sample_rate]
         lon = np.array(data.iloc[:, 2])[::sample_rate]
+        lon /= lon_adjust_factor
         X = np.vstack([lon, lat]).T
         y = data.iloc[:, -1][0]
         Xs.append(X)
@@ -23,7 +28,7 @@ def load_data(directory, size, sample_rate=1000):
     return Xs, ys
 
 
-data_dir = '../data/archive'
+data_dir = '../data'
 train_dir = os.path.join(data_dir, 'train_dataset/train').replace('\\', '/')
 test_dir = os.path.join(data_dir, 'test_dataset/test_dataset').replace('\\', '/')
 
@@ -32,13 +37,13 @@ metrics = ["frechet", "sspd", "discret_frechet", "hausdorff", "dtw", "lcss", "ed
 
 # for metric in metrics:
 def test_metric(metric, n=5, eps=(10 ** i for i in range(-4, 2)), g=(float(10 ** i) for i in range(-4, 2)),
-                type_d='spherical'):
+                type_d='spherical', lon_adjust_factor=1.0):
     accs = []
     eps = list(eps)
     g = list(g)
     k = int(np.floor(np.sqrt(train_size + val_size)))
     for i in range(n):
-        X, y = load_data(train_dir, train_size + val_size + test_size, sample_rate=100)
+        X, y = load_data(train_dir, train_size + val_size + test_size, sample_rate=20)
         assert metric in metrics
         X_test, y_test = X[train_size + val_size:], y[train_size + val_size:]
         if metric in metrics[:5]:
@@ -109,4 +114,20 @@ parser.add_argument('distance_index', metavar='N', type=int, nargs='+',
 
 args = parser.parse_args()
 for index in args.distance_index:
-    print(metrics[index], test_metric(metrics[index], type_d='euclidean'))
+    starttime = datetime.datetime.now()
+    sys.stdout = open(str(index) + '_ori.txt', "wt")
+    print(metrics[index])
+    print(test_metric(metrics[index], type_d='euclidean'))
+    endtime = datetime.datetime.now()
+    print((endtime - starttime).seconds)
+    sys.stdout = open(str(index) + '_lon_adjusted.txt', "wt")
+    print(metrics[index])
+    print(test_metric(metrics[index], type_d='euclidean', lon_adjust_factor=lon_adjust_factor_ship))
+    endtime = datetime.datetime.now()
+    print((endtime - starttime).seconds)
+    if metrics[index] != 'discret_frechet':
+        sys.stdout = open(str(index) + '_spherical.txt', "wt")
+        print(metrics[index])
+        print(test_metric(metrics[index]))
+        endtime = datetime.datetime.now()
+        print((endtime - starttime).seconds)
