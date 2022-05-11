@@ -1,7 +1,7 @@
 import numpy as np
 
 
-def distance_to_similarity(distance_mat, k, temp):
+def distance_to_similarity(distance_mat, k, temp=10):
     """
         distance_mat: N x N
         k: build with kNN neighbors 
@@ -19,13 +19,15 @@ def distance_to_similarity(distance_mat, k, temp):
     return similarity
 
 
-def node_classification(weights, labels, mu):
+def node_classification(weights, labels, mu=1):
     """
         weights: N x N
         labels: N x C
         mu: O_s + mu * O_f
     """
     n = weights.shape[0]
+    if 0 in weights.sum(axis=1):
+        assert 0
     lambda_mat = np.diag(1 / np.sqrt(weights.sum(axis=1)))
     S = np.matmul(np.matmul(lambda_mat, weights), lambda_mat)
     Z = (mu / (1 + mu)) * np.matmul(np.linalg.inv(np.eye(n) - S / (1 + mu)), labels)

@@ -1,5 +1,7 @@
 import os
 import numpy as np
+from tqdm import tqdm
+
 
 def load(name):
     with open(name, "r") as file:
@@ -10,6 +12,13 @@ def load(name):
         return latitude, longitude, mode
 
 
-filenames = os.listdir("H:/下载/Geolife Trajectories 1.3/result/")
-for filename in filenames:
-    load("H:/下载/Geolife Trajectories 1.3/result/" + filename)
+def load_geolife():
+    filenames = os.listdir("../data/Geolife_cleaned/")
+    lats = []
+    lons = []
+    modes = []
+    for filename in tqdm(filenames):
+        data_item = load("../data/Geolife_cleaned/" + filename)
+        lats.append(data_item[0])
+        lons.append(data_item[1])
+        modes.append(data_item[2])
