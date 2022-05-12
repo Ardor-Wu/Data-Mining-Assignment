@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9b6e8a11-3f1f-4d57-8286-e5b08d2a8405" name="Changes" comment="KNN ships">
-      <change afterPath="$PROJECT_DIR$/memo" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/collective_classification.py" beforeDir="false" afterPath="$PROJECT_DIR$/collective_classification.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reader.py" beforeDir="false" afterPath="$PROJECT_DIR$/reader.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ships.py" beforeDir="false" afterPath="$PROJECT_DIR$/ships.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_4_2022_7_50_PM_[Changes]/shelved.patch" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -568,6 +564,7 @@
       <workItem from="1651822459918" duration="4617000" />
       <workItem from="1651895340297" duration="11451000" />
       <workItem from="1652259277064" duration="11800000" />
+      <workItem from="1652353773105" duration="343000" />
     </task>
     <task id="LOCAL-00001" summary="KNN">
       <created>1651666899665</created>
