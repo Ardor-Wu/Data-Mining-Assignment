@@ -1,8 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9b6e8a11-3f1f-4d57-8286-e5b08d2a8405" name="Changes" comment="KNN ships">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_4_2022_7_50_PM_[Changes]/shelved.patch" beforeDir="false" />
+    <list default="true" id="9b6e8a11-3f1f-4d57-8286-e5b08d2a8405" name="Changes" comment="traffic loader">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/3_lon_adjusted.txt" beforeDir="false" afterPath="$PROJECT_DIR$/3_lon_adjusted.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/3_ori.txt" beforeDir="false" afterPath="$PROJECT_DIR$/3_ori.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/4_lon_adjusted.txt" beforeDir="false" afterPath="$PROJECT_DIR$/4_lon_adjusted.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/4_ori.txt" beforeDir="false" afterPath="$PROJECT_DIR$/4_ori.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/5_lon_adjusted.txt" beforeDir="false" afterPath="$PROJECT_DIR$/5_lon_adjusted.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/5_lon_adjusted_KNN.txt" beforeDir="false" afterPath="$PROJECT_DIR$/5_lon_adjusted_KNN.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/5_ori.txt" beforeDir="false" afterPath="$PROJECT_DIR$/5_ori.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/6_ori_graph.txt" beforeDir="false" afterPath="$PROJECT_DIR$/6_ori_graph.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/7_lon_adjusted_KNN.txt" beforeDir="false" afterPath="$PROJECT_DIR$/7_lon_adjusted_KNN.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/7_ori.txt" beforeDir="false" afterPath="$PROJECT_DIR$/7_ori.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/7_ori_graph.txt" beforeDir="false" afterPath="$PROJECT_DIR$/7_ori_graph.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,7 +78,7 @@
       <recent name="D:\projects\Data-Mining-Assignment" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.boats 5">
+  <component name="RunManager" selected="Python.boats 7">
     <configuration name="boats 1 graph 0" type="PythonConfigurationType" factoryName="Python">
       <module name="Data-Mining-Assignment" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -434,7 +445,7 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ships.py" />
-      <option name="PARAMETERS" value="7 --d_type 1" />
+      <option name="PARAMETERS" value="7 --d_type 1 --algorithm graph" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -564,7 +575,7 @@
       <workItem from="1651822459918" duration="4617000" />
       <workItem from="1651895340297" duration="11451000" />
       <workItem from="1652259277064" duration="11800000" />
-      <workItem from="1652353773105" duration="343000" />
+      <workItem from="1652353773105" duration="3918000" />
     </task>
     <task id="LOCAL-00001" summary="KNN">
       <created>1651666899665</created>
@@ -580,7 +591,14 @@
       <option name="project" value="LOCAL" />
       <updated>1651804476014</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="traffic loader">
+      <created>1652354359111</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1652354359111</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -600,7 +618,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="KNN" />
     <MESSAGE value="KNN ships" />
-    <option name="LAST_COMMIT_MESSAGE" value="KNN ships" />
+    <MESSAGE value="traffic loader" />
+    <option name="LAST_COMMIT_MESSAGE" value="traffic loader" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Data_Mining_Assignment$boats_5_2.coverage" NAME="boats 5 2 Coverage Results" MODIFIED="1651823245894" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />

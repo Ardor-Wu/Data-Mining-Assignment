@@ -1,13 +1,3 @@
 dtw
-best_mu: 0.1
-best_temp: 1
-best_mu: 10
-best_temp: 1
-best_mu: 10
-best_temp: 10
-best_mu: 0.1
-best_temp: 10
-best_mu: 100
-best_temp: 10
-[0.625, 0.66, 0.63, 0.58, 0.635]
-32
+[0.75, 0.705, 0.675, 0.695, 0.71]
+3537
