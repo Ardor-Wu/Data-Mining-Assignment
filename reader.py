@@ -15,14 +15,18 @@ def load(name):
 
 def load_geolife():
     filenames = os.listdir("../data/Geolife_cleaned/")
-    lats = []
-    lons = []
+    # lats = []
+    # lons = []
+    Xs = []
     modes = []
     for filename in tqdm(filenames):
         data_item = load("../data/Geolife_cleaned/" + filename)
-        lats.append(data_item[0])
-        lons.append(data_item[1])
+        # lats.append(data_item[0])
+        # lons.append(data_item[1])
+        X = np.vstack((data_item[0], data_item[1])).transpose().astype('float64')
+        Xs.append(X)
         modes.append(data_item[2])
+    return Xs, modes
 
 
 def load_TRAFFIC(data_path):
@@ -37,3 +41,5 @@ def load_TRAFFIC(data_path):
             tem = data[i][0].T
             location.append(tem)
     return np.array(location), np.array(mode)
+
+# load_geolife()

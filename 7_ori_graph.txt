@@ -1,13 +1,13 @@
 erp
 best_mu: 0.01
+best_temp: 0.1
+best_mu: 1
 best_temp: 1
-best_mu: 0.01
-best_temp: 1000
-best_mu: 0.01
-best_temp: 1000
-best_mu: 1
+best_mu: 10
+best_temp: 0.01
+best_mu: 10
 best_temp: 10
 best_mu: 1
-best_temp: 10
-[0.42, 0.445, 0.41, 0.495, 0.51]
-62190
+best_temp: 1
+[0.615, 0.625, 0.615, 0.58, 0.62]
+62

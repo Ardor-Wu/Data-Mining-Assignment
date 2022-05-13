@@ -10,6 +10,8 @@ from collective_classification import distance_to_similarity, node_classificatio
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.preprocessing import OneHotEncoder
 import scipy
+from tqdm import tqdm
+import reader
 
 train_size, val_size, test_size = 600, 200, 200
 
@@ -99,13 +101,17 @@ def graph_classification(dist, k, y_train, y_test, val=False, mu=None, temp=None
 # for metric in metrics:
 def test_metric(metric, n=5, eps=(10 ** -4, 10 ** -3, 10 ** -2, 10 ** -1, 10 ** 0, 10 ** 1),
                 # g=(10 ** -4, 10 ** -3, 10 ** -2, 10 ** -1, 10 ** 0, 10 ** 1),
-                g=0.0, type_d='spherical', lon_adjust_factor=1.0, algorithm='KNN'):
+                g=0.0, type_d='spherical', lon_adjust_factor=1.0, algorithm='KNN', dataset='ships'):
     accs = []
     eps = list(eps)
     k = int(np.floor(np.sqrt(train_size + val_size)))
-    for i in range(n):
-        X, y = load_data(train_dir, train_size + val_size + test_size, sample_rate=20,
-                         lon_adjust_factor=lon_adjust_factor)
+    for i in tqdm(range(n)):
+        if dataset == 'ships':
+            X, y = load_data(train_dir, train_size + val_size + test_size, sample_rate=20,
+                             lon_adjust_factor=lon_adjust_factor)
+        else:
+            if dataset == 'geolife':
+                X, y = reader.load_geolife()
         assert metric in metrics
         X_test, y_test = X[train_size + val_size:], y[train_size + val_size:]
         if metric in metrics[:5]:
@@ -137,7 +143,7 @@ def test_metric(metric, n=5, eps=(10 ** -4, 10 ** -3, 10 ** -2, 10 ** -1, 10 ** 
                         val_dist = tdist.cdist(X_val, X_train, metric=metric, eps=epsilon, type_d=type_d)
                         val_accs.append(KNN_classification(train_dist, val_dist, y_train, y_val, k))
                     else:
-                        dist = tdist.cdist(X_train + X_val, X_train + X_val, metric=metric, type_d=type_d,eps=epsilon)
+                        dist = tdist.cdist(X_train + X_val, X_train + X_val, metric=metric, type_d=type_d, eps=epsilon)
                         res = graph_classification(dist, k, y_train, y_val, val=True)
                         val_accs.append([res[0]])
                         best_mu.append(res[1])
@@ -188,6 +194,8 @@ import argparse
 parser = argparse.ArgumentParser(description='Process some integers.')
 parser.add_argument('--algorithm', default='KNN', type=str,
                     help='KNN or graph')
+parser.add_argument('--dataset', default='ships', type=str,
+                    help='ships')
 parser.add_argument('--d_type', default=0, type=int, metavar='N')
 parser.add_argument('distance_index', metavar='N', type=int, nargs='+',
                     help='an integer distance index')
@@ -204,10 +212,10 @@ for index in args.distance_index:
             sys.stdout = open(str(index) + '_spherical_' + args.algorithm + '.txt', "wt")
     print(metrics[index])
     if args.d_type == 0:
-        print(test_metric(metrics[index], type_d='euclidean', algorithm=args.algorithm))
+        print(test_metric(metrics[index], type_d='euclidean', algorithm=args.algorithm, dataset=args.dataset))
     elif args.d_type == 1:
         print(test_metric(metrics[index], type_d='euclidean', lon_adjust_factor=lon_adjust_factor_ship,
-                          algorithm=args.algorithm))
+                          algorithm=args.algorithm, dataset=args.dataset))
     elif args.d_type == 2:
         if metrics[index] != 'discret_frechet':
             print(test_metric(metrics[index], algorithm=args.algorithm))
