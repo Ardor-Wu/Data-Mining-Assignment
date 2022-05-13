@@ -204,12 +204,12 @@ args = parser.parse_args()
 for index in args.distance_index:
     starttime = datetime.datetime.now()
     if args.d_type == 0:
-        sys.stdout = open(str(index) + '_ori_' + args.algorithm + '.txt', "wt")
+        sys.stdout = open(args.dataset + str(index) + '_ori_' + args.algorithm + '.txt', "wt")
     elif args.d_type == 1:
-        sys.stdout = open(str(index) + '_lon_adjusted_' + args.algorithm + '.txt', "wt")
+        sys.stdout = open(args.dataset + str(index) + '_lon_adjusted_' + args.algorithm + '.txt', "wt")
     elif args.d_type == 2:
         if metrics[index] != 'discret_frechet':
-            sys.stdout = open(str(index) + '_spherical_' + args.algorithm + '.txt', "wt")
+            sys.stdout = open(args.dataset + str(index) + '_spherical_' + args.algorithm + '.txt', "wt")
     print(metrics[index])
     if args.d_type == 0:
         print(test_metric(metrics[index], type_d='euclidean', algorithm=args.algorithm, dataset=args.dataset))
