@@ -1,16 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9b6e8a11-3f1f-4d57-8286-e5b08d2a8405" name="Changes" comment="traffic loader">
-      <change afterPath="$PROJECT_DIR$/5.sl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/5_adjust_lon_graph.sl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/5_graph.sl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/6_adjust_lon_graph.sl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/6_graph.sl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/6_lon_ad.sl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/deployment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
+    <list default="true" id="9b6e8a11-3f1f-4d57-8286-e5b08d2a8405" name="Changes" comment="geolife support">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/7_ori_graph.txt" beforeDir="false" afterPath="$PROJECT_DIR$/7_ori_graph.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/collective_classification.py" beforeDir="false" afterPath="$PROJECT_DIR$/collective_classification.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/memo" beforeDir="false" afterPath="$PROJECT_DIR$/memo" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/reader.py" beforeDir="false" afterPath="$PROJECT_DIR$/reader.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ships.py" beforeDir="false" afterPath="$PROJECT_DIR$/ships.py" afterDir="false" />
     </list>
@@ -69,7 +63,7 @@
     &quot;WebServerToolWindowPanel.toolwindow.show.permissions&quot;: &quot;false&quot;,
     &quot;WebServerToolWindowPanel.toolwindow.show.size&quot;: &quot;false&quot;,
     &quot;last_opened_file_path&quot;: &quot;D:/projects/Data-Mining-Assignment&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;http.proxy&quot;
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
 }</component>
   <component name="RecentsManager">
@@ -77,7 +71,7 @@
       <recent name="D:\projects\Data-Mining-Assignment" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.geolife debug">
+  <component name="RunManager" selected="Python.traffic graph">
     <configuration name="boats 1 graph 0" type="PythonConfigurationType" factoryName="Python">
       <module name="Data-Mining-Assignment" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -356,7 +350,7 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ships.py" />
-      <option name="PARAMETERS" value="--d_type 1 5" />
+      <option name="PARAMETERS" value="--d_type 1 5 --algorithm graph" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -466,7 +460,7 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ships.py" />
-      <option name="PARAMETERS" value="3 --dataset geolife" />
+      <option name="PARAMETERS" value="1 --dataset geolife --d_type 1" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -474,7 +468,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="reader" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="reader" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="Data-Mining-Assignment" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -489,6 +483,50 @@
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/reader.py" />
       <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="traffic debug" type="PythonConfigurationType" factoryName="Python">
+      <module name="Data-Mining-Assignment" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ships.py" />
+      <option name="PARAMETERS" value="1 2 3 4 5 6 7 --dataset traffic" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="traffic graph" type="PythonConfigurationType" factoryName="Python">
+      <module name="Data-Mining-Assignment" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ships.py" />
+      <option name="PARAMETERS" value="1 2 3 4 5 6 7 --dataset traffic --algorithm graph" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -524,6 +562,8 @@
       <item itemvalue="Python.boats 4 graph 0" />
       <item itemvalue="Python.boats 6 graph 0" />
       <item itemvalue="Python.geolife debug" />
+      <item itemvalue="Python.traffic debug" />
+      <item itemvalue="Python.traffic graph" />
       <item itemvalue="Python.boats 5" />
       <item itemvalue="Python.boats 5 2" />
       <item itemvalue="Python.boats 5 0" />
@@ -535,7 +575,6 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.reader" />
         <item itemvalue="Python tests.Python tests for ships.test_metric" />
         <item itemvalue="Python.calculate_average_lat" />
         <item itemvalue="Python.boats 1" />
@@ -575,7 +614,11 @@
       <workItem from="1651895340297" duration="11451000" />
       <workItem from="1652259277064" duration="11800000" />
       <workItem from="1652353773105" duration="3918000" />
-      <workItem from="1652406557177" duration="5678000" />
+      <workItem from="1652406557177" duration="8724000" />
+      <workItem from="1652441036250" duration="8205000" />
+      <workItem from="1652488634394" duration="3749000" />
+      <workItem from="1652510519524" duration="183000" />
+      <workItem from="1652510714690" duration="5509000" />
     </task>
     <task id="LOCAL-00001" summary="KNN">
       <created>1651666899665</created>
@@ -598,7 +641,21 @@
       <option name="project" value="LOCAL" />
       <updated>1652354359111</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="geolife support">
+      <created>1652413474836</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1652413474836</updated>
+    </task>
+    <task id="LOCAL-00005" summary="geolife support">
+      <created>1652413555314</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1652413555314</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -619,41 +676,34 @@
     <MESSAGE value="KNN" />
     <MESSAGE value="KNN ships" />
     <MESSAGE value="traffic loader" />
-    <option name="LAST_COMMIT_MESSAGE" value="traffic loader" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/ships.py</url>
-          <line>114</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="geolife support" />
+    <option name="LAST_COMMIT_MESSAGE" value="geolife support" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Data_Mining_Assignment$boats_5_2.coverage" NAME="boats 5 2 Coverage Results" MODIFIED="1651823245894" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Data_Mining_Assignment$boats_6.coverage" NAME="boats 6 Coverage Results" MODIFIED="1652277163896" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Data_Mining_Assignment$boats_4_graph.coverage" NAME="boats 4 graph Coverage Results" MODIFIED="1651914523490" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Data_Mining_Assignment$traffic_debug.coverage" NAME="traffic debug Coverage Results" MODIFIED="1652512678319" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Data_Mining_Assignment$boats_2_graph.coverage" NAME="boats 2 graph Coverage Results" MODIFIED="1651914518997" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Data_Mining_Assignment$boats_3_graph_0.coverage" NAME="boats 3 graph 0 Coverage Results" MODIFIED="1651914511904" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Data_Mining_Assignment$boats_3.coverage" NAME="boats 3 graph Coverage Results" MODIFIED="1651914510038" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Data_Mining_Assignment$boats_1_graph_0.coverage" NAME="boats 1 graph 0 Coverage Results" MODIFIED="1651914516847" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Data_Mining_Assignment$traffic_graph.coverage" NAME="traffic graph Coverage Results" MODIFIED="1652513206698" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Data_Mining_Assignment$boats_2.coverage" NAME="boats 2 Coverage Results" MODIFIED="1651667938200" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Data_Mining_Assignment$boats_3_graph.coverage" NAME="boats 3 graph Coverage Results" MODIFIED="1652412429670" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Data_Mining_Assignment$calculate_average_lat.coverage" NAME="calculate_average_lat Coverage Results" MODIFIED="1651803473576" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Data_Mining_Assignment$boats_5.coverage" NAME="boats 5 Coverage Results" MODIFIED="1652277177629" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Data_Mining_Assignment$boats_2_graph_0.coverage" NAME="boats 2 graph 0 Coverage Results" MODIFIED="1651914520872" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Data_Mining_Assignment$boats.coverage" NAME="boats 1 Coverage Results" MODIFIED="1651666653392" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Data_Mining_Assignment$geolife_debug.coverage" NAME="geolife debug Coverage Results" MODIFIED="1652490468813" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Data_Mining_Assignment$boats_1.coverage" NAME="boats 1 Coverage Results" MODIFIED="1651802773485" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Data_Mining_Assignment$boats_1_graph.coverage" NAME="boats 1 graph Coverage Results" MODIFIED="1651914513918" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Data_Mining_Assignment$boats_4_graph_0.coverage" NAME="boats 4 graph 0 Coverage Results" MODIFIED="1652270768223" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Data_Mining_Assignment$boats_7_graph_0.coverage" NAME="boats 6 graph 0 Coverage Results" MODIFIED="1652276578408" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Data_Mining_Assignment$boats_7.coverage" NAME="boats 7 Coverage Results" MODIFIED="1652407019057" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Data_Mining_Assignment$boats_4.coverage" NAME="geolife debug Coverage Results" MODIFIED="1652413681461" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Data_Mining_Assignment$boats_5_2.coverage" NAME="boats 5 2 Coverage Results" MODIFIED="1651823245894" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Data_Mining_Assignment$boats_6.coverage" NAME="boats 6 Coverage Results" MODIFIED="1652277163896" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Data_Mining_Assignment$boats_4_graph.coverage" NAME="boats 4 graph Coverage Results" MODIFIED="1651914523490" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Data_Mining_Assignment$boats_3.coverage" NAME="boats 3 graph Coverage Results" MODIFIED="1651914510038" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Data_Mining_Assignment$boats_1_graph_0.coverage" NAME="boats 1 graph 0 Coverage Results" MODIFIED="1651914516847" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Data_Mining_Assignment$boats_5.coverage" NAME="boats 5 Coverage Results" MODIFIED="1652441686978" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Data_Mining_Assignment$boats.coverage" NAME="boats 1 Coverage Results" MODIFIED="1651666653392" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Data_Mining_Assignment$boats_1_graph.coverage" NAME="boats 1 graph Coverage Results" MODIFIED="1651914513918" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Data_Mining_Assignment$boats_4_graph_0.coverage" NAME="boats 4 graph 0 Coverage Results" MODIFIED="1652270768223" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Data_Mining_Assignment$boats_5_0.coverage" NAME="boats 5 0 Coverage Results" MODIFIED="1651823241009" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Data_Mining_Assignment$reader.coverage" NAME="reader Coverage Results" MODIFIED="1652412595416" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Data_Mining_Assignment$reader.coverage" NAME="reader Coverage Results" MODIFIED="1652448994864" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Data_Mining_Assignment$.coverage" NAME=" Coverage Results" MODIFIED="1652271718925" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Data_Mining_Assignment$boats_4.coverage" NAME="geolife debug Coverage Results" MODIFIED="1652413349441" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

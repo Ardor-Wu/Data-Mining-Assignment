@@ -16,6 +16,7 @@ import reader
 train_size, val_size, test_size = 600, 200, 200
 
 lon_adjust_factor_ship = 1 / np.cos(30.526296012793487)
+lon_adjust_factor_geolife = 1 / np.cos(39.62123654404935)
 
 
 def load_data(directory, size, sample_rate=1000, lon_adjust_factor=1.0):
@@ -56,7 +57,8 @@ def acc(y_pred, y_test):
     return correct / len(y_test)
 
 
-def graph_classification(dist, k, y_train, y_test, val=False, mu=None, temp=None):
+def graph_classification(dist, k, y_train, y_test, val=False, mu=None, temp=None, train_size=train_size,
+                         val_size=val_size, test_size=val_size):
     label_encoder = OneHotEncoder(sparse=False)
     label_encoder.fit(np.array(y_train).reshape(-1, 1))
     y_train_encoded = label_encoder.transform(np.array(y_train).reshape(-1, 1))
@@ -65,7 +67,7 @@ def graph_classification(dist, k, y_train, y_test, val=False, mu=None, temp=None
     if mu:
         assert temp
         similarity = distance_to_similarity(dist, k, temp)
-        y_pred = node_classification(similarity, y_input)[-test_size:]
+        y_pred = node_classification(similarity, y_input, mu)[-test_size:]
         return acc(y_pred, y_test_encoded), mu, temp
     else:
         best_mu, best_temp = None, None
@@ -74,7 +76,7 @@ def graph_classification(dist, k, y_train, y_test, val=False, mu=None, temp=None
             similarity = distance_to_similarity(dist, k, temp)
             if val:
                 for mu in (0.001, 0.01, 0.1, 1, 10, 100, 1000):
-                    y_pred = node_classification(similarity, y_input)[-val_size:]
+                    y_pred = node_classification(similarity, y_input, mu)[-val_size:]
                     accuracy = acc(y_pred, y_test_encoded)
                     if accuracy > best_accuracy:
                         best_accuracy = accuracy
@@ -98,13 +100,31 @@ def graph_classification(dist, k, y_train, y_test, val=False, mu=None, temp=None
         return acc(y_pred, y_test_encoded), best_mu, best_temp
 
 
+def split_data(metric, X, y, train_size, val_size, test_size):
+    X_test, y_test = X[train_size + val_size:train_size + val_size + test_size], y[
+                                                                                 train_size + val_size:train_size + val_size + test_size]
+    if metric in metrics[:5]:
+        X_train = X[:train_size + val_size]
+        y_train = y[:train_size + val_size]
+        return X_train, y_train, X_test, y_test
+    else:
+        X_train = X[:train_size]
+        y_train = y[:train_size]
+        X_val = X[train_size:train_size + val_size]
+        y_val = y[train_size:train_size + val_size]
+        return X_train, y_train, X_val, y_val, X_test, y_test
+
+
 # for metric in metrics:
 def test_metric(metric, n=5, eps=(10 ** -4, 10 ** -3, 10 ** -2, 10 ** -1, 10 ** 0, 10 ** 1),
                 # g=(10 ** -4, 10 ** -3, 10 ** -2, 10 ** -1, 10 ** 0, 10 ** 1),
                 g=0.0, type_d='spherical', lon_adjust_factor=1.0, algorithm='KNN', dataset='ships'):
     accs = []
     eps = list(eps)
-    k = int(np.floor(np.sqrt(train_size + val_size)))
+    if dataset == 'traffic':
+        k = int(np.floor(np.sqrt(200 * 0.8)))
+    else:
+        k = int(np.floor(np.sqrt(train_size + val_size)))
     for i in tqdm(range(n)):
         if dataset == 'ships':
             X, y = load_data(train_dir, train_size + val_size + test_size, sample_rate=20,
@@ -112,24 +132,36 @@ def test_metric(metric, n=5, eps=(10 ** -4, 10 ** -3, 10 ** -2, 10 ** -1, 10 ** 
         else:
             if dataset == 'geolife':
                 X, y = reader.load_geolife()
+            elif dataset == 'traffic':
+                X, y = reader.load_TRAFFIC("../data/TRAFFIC.mat")
         assert metric in metrics
-        X_test, y_test = X[train_size + val_size:], y[train_size + val_size:]
         if metric in metrics[:5]:
-            X_train = X[:train_size + val_size]
-            y_train = y[:train_size + val_size]
+            if dataset == 'traffic':
+                X_train, y_train, X_test, y_test = split_data(metric, X, y, int(200 * 0.6), int(200 * 0.2),
+                                                              int(200 * 0.2))
+            else:
+                X_train, y_train, X_test, y_test = split_data(metric, X, y, train_size, val_size, test_size)
         else:
-            X_train = X[:train_size]
-            y_train = y[:train_size]
-            X_val = X[train_size:train_size + val_size]
-            y_val = y[train_size:train_size + val_size]
+            if dataset == 'traffic':
+                X_train, y_train, X_val, y_val, X_test, y_test = split_data(metric, X, y, int(200 * 0.6),
+                                                                            int(200 * 0.2),
+                                                                            int(200 * 0.2))
+            else:
+                X_train, y_train, X_val, y_val, X_test, y_test = split_data(metric, X, y, train_size, val_size,
+                                                                            test_size)
         if metric in metrics[:5]:
+
             if algorithm == 'KNN':
                 train_dist = tdist.cdist(X_train, X_train, metric=metric, type_d=type_d)
                 test_dist = tdist.cdist(X_test, X_train, metric=metric, type_d=type_d)
                 accs.append(KNN_classification(train_dist, test_dist, y_train, y_test, k))
             else:
                 dist = tdist.cdist(X_train + X_test, X_train + X_test, metric=metric, type_d=type_d)
-                res = graph_classification(dist, k, y_train, y_test)
+                if dataset == 'traffic':
+                    res = graph_classification(dist, k, y_train, y_test, train_size=int(200 * 0.6),
+                                               val_size=int(200 * 0.2), test_size=int(200 * 0.2))
+                else:
+                    res = graph_classification(dist, k, y_train, y_test)
                 print('best_mu:', res[1])
                 print('best_temp:', res[2])
                 accs.append(res[0])
@@ -144,7 +176,11 @@ def test_metric(metric, n=5, eps=(10 ** -4, 10 ** -3, 10 ** -2, 10 ** -1, 10 ** 
                         val_accs.append(KNN_classification(train_dist, val_dist, y_train, y_val, k))
                     else:
                         dist = tdist.cdist(X_train + X_val, X_train + X_val, metric=metric, type_d=type_d, eps=epsilon)
-                        res = graph_classification(dist, k, y_train, y_val, val=True)
+                        if dataset == 'traffic':
+                            res = graph_classification(dist, k, y_train, y_val, val=True, train_size=int(200 * 0.6),
+                                                       val_size=int(200 * 0.2), test_size=int(200 * 0.2))
+                        else:
+                            res = graph_classification(dist, k, y_train, y_val, val=True)
                         val_accs.append([res[0]])
                         best_mu.append(res[1])
                         best_temp.append(res[2])
@@ -162,7 +198,12 @@ def test_metric(metric, n=5, eps=(10 ** -4, 10 ** -3, 10 ** -2, 10 ** -1, 10 ** 
                 else:
                     dist = tdist.cdist(X_train + X_val + X_test, X_train + X_val + X_test, metric=metric, type_d=type_d,
                                        eps=best_epsilon)
-                    res = graph_classification(dist, k, y_train + y_val, y_test, mu=best_mu, temp=best_temp)
+                    if dataset == 'traffic':
+                        res = graph_classification(dist, k, y_train + y_val, y_test, train_size=int(200 * 0.6),
+                                                   val_size=int(200 * 0.2), test_size=int(200 * 0.2), mu=best_mu,
+                                                   temp=best_temp)
+                    else:
+                        res = graph_classification(dist, k, y_train + y_val, y_test, mu=best_mu, temp=best_temp)
                     accs.append(res[0])
                     best_mu = res[1]
                     best_temp = res[2]
@@ -177,7 +218,11 @@ def test_metric(metric, n=5, eps=(10 ** -4, 10 ** -3, 10 ** -2, 10 ** -1, 10 ** 
                 else:
                     dist = tdist.cdist(X_train + X_val + X_test, X_train + X_val + X_test, metric=metric, type_d=type_d,
                                        g=best_g)
-                    res = graph_classification(dist, k, y_train + y_val, y_test)
+                    if dataset == 'traffic':
+                        res = graph_classification(dist, k, y_train + y_val, y_test, train_size=int(200 * 0.6),
+                                                   val_size=int(200 * 0.2), test_size=int(200 * 0.2))
+                    else:
+                        res = graph_classification(dist, k, y_train + y_val, y_test)
                     print('best_mu:', res[1])
                     print('best_temp:', res[2])
                     accs.append(res[0])
@@ -204,18 +249,27 @@ args = parser.parse_args()
 for index in args.distance_index:
     starttime = datetime.datetime.now()
     if args.d_type == 0:
-        sys.stdout = open(args.dataset + str(index) + '_ori_' + args.algorithm + '.txt', "wt")
+        sys.stdout = open(args.dataset + '_' + str(index) + '_ori_' + args.algorithm + '.txt', "wt")
     elif args.d_type == 1:
-        sys.stdout = open(args.dataset + str(index) + '_lon_adjusted_' + args.algorithm + '.txt', "wt")
+        sys.stdout = open(args.dataset + '_' + str(index) + '_lon_adjusted_' + args.algorithm + '.txt', "wt")
     elif args.d_type == 2:
         if metrics[index] != 'discret_frechet':
-            sys.stdout = open(args.dataset + str(index) + '_spherical_' + args.algorithm + '.txt', "wt")
+            sys.stdout = open(args.dataset + '_' + str(index) + '_spherical_' + args.algorithm + '.txt', "wt")
     print(metrics[index])
     if args.d_type == 0:
-        print(test_metric(metrics[index], type_d='euclidean', algorithm=args.algorithm, dataset=args.dataset))
+        if args.dataset == 'traffic':
+            print(test_metric(metrics[index], type_d='euclidean', dataset=args.dataset, algorithm=args.algorithm,
+                              eps=(10 ** 2, 10 ** -3, 10 ** -2, 10 ** -1, 10 ** 0, 10 ** 1)))
+        else:
+            print(test_metric(metrics[index], type_d='euclidean', algorithm=args.algorithm, dataset=args.dataset))
     elif args.d_type == 1:
-        print(test_metric(metrics[index], type_d='euclidean', lon_adjust_factor=lon_adjust_factor_ship,
-                          algorithm=args.algorithm, dataset=args.dataset))
+        if args.dataset == 'ships':
+            print(test_metric(metrics[index], type_d='euclidean', lon_adjust_factor=lon_adjust_factor_ship,
+                              algorithm=args.algorithm, dataset=args.dataset))
+        else:
+            if args.dataset == 'geolife':
+                print(test_metric(metrics[index], type_d='euclidean', lon_adjust_factor=lon_adjust_factor_geolife,
+                                  algorithm=args.algorithm, dataset=args.dataset))
     elif args.d_type == 2:
         if metrics[index] != 'discret_frechet':
             print(test_metric(metrics[index], algorithm=args.algorithm))

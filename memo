@@ -4,4 +4,6 @@
 2. mu temp not specified, separate val needed
 3. mu temp not specified, val not needed
 
-cori 07 1234
+#cori 07 1234
+
+cori 01-07
